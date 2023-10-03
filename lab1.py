@@ -14,6 +14,7 @@ class rectangle:
         self.y_array = []
         self.array_size = 10
         self.gen_class()
+        self.draw([(x, y), ((x + a), y), ((x+a), (y + b)), (x, (y + b))])
     
     def gen_class(self):
         for i in range(self.array_size):
@@ -26,13 +27,13 @@ class rectangle:
     def get_inits(self):
         return self.x, self.y, self.width, self.height
     
-def draw_rectangle(points): 
-    x = [point[0] for point in points]
-    y = [point[1] for point in points]
-    
-    x.append(x[0])
-    y.append(y[0])  
-    plt.plot(x, y) 
+    def draw(self, points): 
+        x = [point[0] for point in points]
+        y = [point[1] for point in points]
+        
+        x.append(x[0])
+        y.append(y[0])  
+        plt.plot(x, y) 
 
 
 classes = []
@@ -72,9 +73,9 @@ for i in range(k):
     results.write("\n")
 
     plt.scatter(res_x, res_y, c=colors[i])
-    draw_rectangle([(x, y), ((x + a), (y)), ((x+a), (y + b)), (x, (y + b))])
+    
 
 results.close()
 
-# plt.grid(color = 'lightgray', linestyle = '--')
+
 plt.show()
