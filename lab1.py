@@ -1,18 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
 import os
 
 
 class rectangle:
-    def __init__(self, x, y, a, b):
+    def __init__(self, x, y, a, b, n):
         self.x = x
         self.y = y
         self.width = a
         self.height = b
         self.x_array = []
         self.y_array = []
-        self.array_size = 10
+        self.array_size = n
         self.gen_class()
         self.draw([(x, y), ((x + a), y), ((x+a), (y + b)), (x, (y + b))])
     
@@ -42,12 +41,13 @@ colors = ['yellow', 'orange', 'cyan', 'blue', 'purple', 'red', 'gray']
 if os.path.exists('data/input.conf'):
     f = open('data/input.conf', 'r')
     k = 0
-    
+    n = int(f.readline())
+
     for line in f:
         values = line.split(' ')
         values[len(values)-1] = values[len(values)-1].replace('\n', '')
         x, y, a, b = [float(values[i]) for i in range(len(values))]
-        classes.append(rectangle(x, y, a, b))
+        classes.append(rectangle(x, y, a, b, n))
         k += 1
 
 else:
@@ -59,7 +59,8 @@ else:
         y = float(input("y = "))
         a = float(input("width = "))
         b = float(input("height = "))
-        classes.append(rectangle(x, y, a, b))
+        n = int(input("Amount of points in every rectangle"))
+        classes.append(rectangle(x, y, a, b, n))
 
 results = open('data/output.conf', 'w')
 for i in range(k):
