@@ -26,6 +26,14 @@ class rectangle:
     def get_inits(self):
         return self.x, self.y, self.width, self.height
     
+def draw_rectangle(points): 
+    x = [point[0] for point in points]
+    y = [point[1] for point in points]
+    
+    x.append(x[0])
+    y.append(y[0])  
+    plt.plot(x, y) 
+
 
 classes = []
 colors = ['yellow', 'orange', 'cyan', 'blue', 'purple', 'red', 'gray']
@@ -64,8 +72,9 @@ for i in range(k):
     results.write("\n")
 
     plt.scatter(res_x, res_y, c=colors[i])
+    draw_rectangle([(x, y), ((x + a), (y)), ((x+a), (y + b)), (x, (y + b))])
 
 results.close()
 
-plt.grid(color = 'lightgray', linestyle = '--')
+# plt.grid(color = 'lightgray', linestyle = '--')
 plt.show()
